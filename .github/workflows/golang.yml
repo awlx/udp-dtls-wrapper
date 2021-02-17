@@ -8,9 +8,10 @@ on:
   
 jobs:
   build:
-    matrix:
-      binary: [dtls-decrypter, dtls-encrypter]
-      os: [ubuntu-latest, macos-latest, windows-latest]
+    strategy:
+      matrix:
+        binary: [dtls-decrypter, dtls-encrypter]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
