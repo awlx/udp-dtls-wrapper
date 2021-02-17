@@ -24,7 +24,9 @@ jobs:
       run: go mod download
 
     - name: Build
-      run: go build ./cmd/${{ matrix.binary }}/main.go
+      run: | 
+        go build ./cmd/${{ matrix.binary }}/main.go
+        echo "::set-output name=status::success"
 
     - name: Upload build ${{ matrix.os }}/${{ matrix.binary }}
       uses: actions/upload-artifact@master
