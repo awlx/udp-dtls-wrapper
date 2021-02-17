@@ -26,3 +26,9 @@ jobs:
     - name: Build
       run: go build ./cmd/${{ matrix.binary }}/main.go
 
+      - name: Upload build ${{ matrix.os }}/${{ matrix.binary }}
+        uses: actions/upload-artifact@master
+        if: steps.compile.outputs.status == 'success'
+        with:
+          name: ${{ matrix.binary }}-${{ matrix.os }}
+          path: ./main
